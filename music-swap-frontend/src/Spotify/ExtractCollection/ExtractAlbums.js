@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
+import ViewAlbums from "../ViewCollection/ViewAlbums";
 
 export default function ExtractAlbums({ accessToken, receiveAlbums }) {
+  const [albums, setAlbums] = useState(() => {
+    const localData = localStorage.getItem("albums");
+    return localData ? JSON.parse(localData) : [];
+  });
+
   const extractAlbums = () => {
     var headers = {
       method: "GET",
@@ -13,13 +19,15 @@ export default function ExtractAlbums({ accessToken, receiveAlbums }) {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        receiveAlbums(data.items);
+        setAlbums(data.items);
+        console.log(albums);
       });
   };
 
   return (
     <>
       <button onClick={extractAlbums}>Generatae albums</button>
+      <ViewAlbums albums={albums} />
     </>
   );
 }
