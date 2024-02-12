@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GenerateAccessToken from "./Authentication/SpotifyAuthentication";
+import Spotify from "./Spotify/Spotify";
 
 function App() {
   const [token, setToken] = useState("");
@@ -9,7 +9,7 @@ function App() {
   };
   return (
     <>
-      <GenerateAccessToken receiveToken={receiveToken} />
+      <Spotify />
     </>
   );
 }
