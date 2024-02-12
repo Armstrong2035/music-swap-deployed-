@@ -5,7 +5,10 @@ import ExtractAlbums from "./ExtractCollection/ExtractAlbums";
 function Spotify() {
   const [accessToken, setAccessToken] = useState(null);
   const [username, setUsername] = useState("");
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState(() => {
+    const localData = localStorage.getItem("albums");
+    return localData ? JSON.parse(localData) : [];
+  });
 
   const receiveAccessToken = (token) => {
     setAccessToken(token);
@@ -15,7 +18,7 @@ function Spotify() {
   };
 
   const receiveAlbums = (albums) => {
-    setAlbums(setAlbums);
+    setAlbums(albums);
     console.log(albums);
   };
 
