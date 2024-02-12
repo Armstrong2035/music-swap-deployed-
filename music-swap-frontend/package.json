@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "react-router-dom": "^6.21.3",
+    "spotify-web-api-js": "^1.5.2",
+    "web-vitals": "^3.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
