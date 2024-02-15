@@ -4,12 +4,15 @@ export default function ViewAlbums({ albums }) {
   const [albumList, setAlbumList] = useState([]);
 
   useEffect(() => {
-    const albumsToAdd = albums.map((i, index) => ({
-      id: index,
-      album: i.album.name,
-      artist: i.album.artists[0].name,
-      image: i.album.images[2].url,
-      uri: i.album.uri,
+    const filteredAlbums = albums.filter(
+      (album) => album.album.album_type === "album"
+    );
+    const albumsToAdd = filteredAlbums.map((album) => ({
+      id: album.album.id,
+      album: album.album.name,
+      artist: album.album.artists[0].name,
+      image: album.album.images[2].url,
+      uri: album.album.uri,
     }));
     setAlbumList((prevAlbumList) => [...prevAlbumList, ...albumsToAdd]);
   }, [albums]);
@@ -20,8 +23,13 @@ export default function ViewAlbums({ albums }) {
       <ul>
         {albumList.map((album) => (
           <li key={album.id}>
-            {album.album} {album.artist}
-            <img src={album.image} />
+            <div>
+              {album.album} {album.artist}
+              <img
+                src={album.image}
+                alt={`${album.album} by ${album.artist}`}
+              />
+            </div>
           </li>
         ))}
       </ul>

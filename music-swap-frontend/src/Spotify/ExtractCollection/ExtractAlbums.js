@@ -26,7 +26,7 @@ export default function ExtractAlbums({ accessToken, receiveAlbums }) {
 
   return (
     <>
-      <button onClick={extractAlbums}>Generatae albums</button>
+      <button onClick={extractAlbums}>Generate albums</button>
       <ViewAlbums albums={albums} />
     </>
   );
