@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SpotifyAuthentication from "./Authentication/SpotifyAuthentication";
 import ExtractAlbums from "./ExtractCollection/ExtractAlbums";
+import GoogleAuth from "../YouTube/Authentication/YouTubeAuthentication";
 
 function Spotify() {
   const [accessToken, setAccessToken] = useState(null);
@@ -13,6 +14,7 @@ function Spotify() {
   return (
     <>
       <SpotifyAuthentication receiveAccessToken={receiveAccessToken} />
+      <GoogleAuth />
       <ExtractAlbums />
     </>
   );
