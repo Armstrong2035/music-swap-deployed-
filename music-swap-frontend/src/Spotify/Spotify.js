@@ -14,7 +14,6 @@ function Spotify() {
   return (
     <>
       <SpotifyAuthentication receiveAccessToken={receiveAccessToken} />
-      <GoogleAuth />
       <ExtractAlbums />
     </>
   );

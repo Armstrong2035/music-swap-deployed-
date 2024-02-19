@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "./Spotify/Spotify";
+import YouTube from "./YouTube/YouTube";
 
 function App() {
   const [token, setToken] = useState("");
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Spotify />
+      <YouTube />
     </>
   );
 }
