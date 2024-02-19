@@ -2,30 +2,20 @@ import react, { useState, useEffect } from "react";
 import GoogleAuth from "./Authentication/YouTubeAuthentication";
 import ReceiveQuery from "../TheBridge/ReceiveQuery";
 
-function YouTube() {
+function YouTube({ albums }) {
   const [accessToken, setAccessToken] = useState("");
-  const [query, setQuery] = useState([]);
+  const [queryArray, setQueryArray] = useState([]);
 
   const receiveToken = (token) => {
     setAccessToken(token);
   };
 
-  const receiveQuery = (query) => {
-    setQuery((prevQuery) => [...prevQuery, query]);
-  };
-
-  // useEffect(() => {
-  //   console.log(accessToken);
-  // }, [accessToken]);
-
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
+  console.log(albums);
   return (
     <div>
       <h1>YouTube</h1>
       <GoogleAuth receiveToken={receiveToken} />
-      <ReceiveQuery receiveQuery={receiveQuery} />
+      {/* <ReceiveQuery collectQuery={collectQuery} /> */}
     </div>
   );
 }
