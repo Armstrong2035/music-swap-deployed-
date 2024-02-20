@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Spotify {...{ filteredAlbums, setAlbums }} />
-      <YouTube albums={albums} />
+      <YouTube filteredAlbums={filteredAlbums} />
     </>
   );
 }

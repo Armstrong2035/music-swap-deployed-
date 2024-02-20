@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SpotifyAuthentication from "./Authentication/SpotifyAuthentication";
 import ExtractAlbums from "./ExtractCollection/ExtractAlbums";
-import GoogleAuth from "../YouTube/Authentication/YouTubeAuthentication";
+import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
 import ViewAlbums from "./ViewCollection/ViewAlbums";
 
 function Spotify({ setAlbums, filteredAlbums }) {

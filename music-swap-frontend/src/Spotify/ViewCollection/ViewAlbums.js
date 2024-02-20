@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReceiveQuery from "../../TheBridge/ReceiveQuery";
 
 export default function ViewAlbums({ filteredAlbums }) {
   return (
