@@ -17,10 +17,15 @@ function App() {
           name: album.album.name,
           artist: album.album.artists[0].name,
           image: album.album.images[2].url,
-          uri: album.album.uri,
+          tracks: album.album.tracks.items.map((track) => ({
+            id: track.id,
+            name: track.name,
+          })),
         })),
     [albums]
   );
+
+  console.log(filteredAlbums);
 
   return (
     <>

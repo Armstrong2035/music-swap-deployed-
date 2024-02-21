@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
+import CloneAlbum from "../CreateCollection/CreatePlaylist";
+import SearchAlbums from "../CreateCollection/CreatePlaylist";
 
 export default function ReceiveQuery({
   filteredAlbums,
-  setQueryArray,
+  setAlbumDetails,
   queryArray,
 }) {
   useEffect(() => {
     const query = filteredAlbums.map((album) => {
-      return `${album.name} ${album.artist}`;
+      return {
+        title: `${album.name} ${album.artist}`,
+        tracks: album.tracks.map((track) => `${track.name} by ${album.artist}`),
+      };
     });
-    setQueryArray(query);
+    setAlbumDetails(query);
   }, [filteredAlbums]);
-  return (
-    <>
-      <CloneAlbum />
-    </>
-  );
+  return <></>;
 }
