@@ -1,31 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function CreatePlaylist({ queryArray, setYouTubeAlbums }) {
-  useEffect(() => {
-    const fetchAlbumData = async () => {
-      const albumData = [];
-      let errorOccured = false;
-      for (const query of queryArray) {
-        if (errorOccured) {
-          break;
+const MyComponent = ({ accessToken }) => {
+  console.log(accessToken);
+  const createPlaylist = async () => {
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/youtube/v3/playlists?part=id,snippet",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            snippet: {
+              title: "My new playlist 2222",
+              description: "just testing",
+              status: {
+                privacyStatus: "public",
+              },
+            },
+          }),
         }
-        try {
-          const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?key=AIzaSyDFmaNtVlA__pYH6higfqR9TdSZf7WuYVo&q=${query}&part=snippet&type=playlist`
-          );
-          const data = await response.json();
-          if (data.items && data.items.length > 0) {
-            albumData.push(data.items[0]);
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
+      );
+
+      if (!response.ok) {
+        throw new Error("failed to create playlist");
+
+        const data = response.data.json();
+        console.log(data);
       }
-      setYouTubeAlbums(albumData);
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchAlbumData();
-  }, [queryArray]);
+  return (
+    <div>
+      <button onClick={createPlaylist}>Create Playlist</button>
+    </div>
+  );
+};
 
-  return <></>;
-}
+export default MyComponent;

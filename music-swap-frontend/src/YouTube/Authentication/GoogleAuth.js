@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const GoogleAuth = ({ receiveToken }) => {
+const GoogleAuth = ({ setAccesToken }) => {
   const [client, setClient] = useState(null);
-  const [token, setToken] = useState("");
 
   useEffect(() => {
     const loadGoogleIdentityPlatform = () => {
@@ -20,10 +19,10 @@ const GoogleAuth = ({ receiveToken }) => {
         client_id:
           "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
         scope:
-          "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl",
+          "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
         callback: (response) => {
           console.log(response);
-          setToken(response.access_token);
+          setAccessToken(response.access_token);
         },
       });
       setClient(tokenClient);
@@ -45,8 +44,6 @@ const GoogleAuth = ({ receiveToken }) => {
       client.requestAccessToken();
     }
   };
-
-  receiveToken(token);
 
   return (
     <div>
