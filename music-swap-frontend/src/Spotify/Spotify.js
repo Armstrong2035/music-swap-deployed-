@@ -15,7 +15,7 @@ function Spotify({ setAlbums, filteredAlbums }) {
   return (
     <>
       <SpotifyAuthentication receiveAccessToken={receiveAccessToken} />
-      <ExtractAlbums {...{ filteredAlbums, setAlbums }} />
+      <ExtractAlbums {...{ accessToken, filteredAlbums, setAlbums }} />
       <ViewAlbums filteredAlbums={filteredAlbums} />
     </>
   );

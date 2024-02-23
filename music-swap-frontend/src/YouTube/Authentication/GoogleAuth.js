@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const GoogleAuth = ({ setAccesToken }) => {
+const GoogleAuth = ({ receiveAccessToken }) => {
+  const [token, setToken] = useState(null);
   const [client, setClient] = useState(null);
 
   useEffect(() => {
@@ -22,10 +23,11 @@ const GoogleAuth = ({ setAccesToken }) => {
           "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
         callback: (response) => {
           console.log(response);
-          setAccessToken(response.access_token);
+          setToken(response);
         },
       });
       setClient(tokenClient);
+      // console.log(tokenClient);
     };
 
     if (
@@ -44,6 +46,10 @@ const GoogleAuth = ({ setAccesToken }) => {
       client.requestAccessToken();
     }
   };
+
+  receiveAccessToken(token);
+
+  // console.log(accessToken);
 
   return (
     <div>

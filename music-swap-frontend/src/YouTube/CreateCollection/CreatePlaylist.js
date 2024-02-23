@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import SearchSongs from "../SearchSongs/SearchSongs";
 
-const MyComponent = ({ accessToken }) => {
-  console.log(accessToken);
+const CreatePlaylist = ({
+  accessToken = "ya29.a0AfB_byDTl-1kJYU-DpFWHv0OFv8RtcZTbPpE_U2gfjv1cGvM1fx85yFhlrI_XtGL_9VxefToGwx0BrbsBnsWoUFi4gNWc1ra_Iqo0qznAbcNH0YJqMwzicONNwxux5aigYFkeqSJO6wqQfMMcBaPeSBAj0tQJ4q75CAaCgYKAVoSARMSFQHGX2MifdyAw2_MEzdlsKtOPUlkqQ0170",
+  albumDetails,
+}) => {
+  const [playlistId, setPlaylistId] = useState("");
+
   const createPlaylist = async () => {
     try {
       const response = await fetch(
@@ -14,7 +19,7 @@ const MyComponent = ({ accessToken }) => {
           },
           body: JSON.stringify({
             snippet: {
-              title: "My new playlist 2222",
+              title: "My new playlist 2223",
               description: "just testing",
               status: {
                 privacyStatus: "public",
@@ -24,22 +29,23 @@ const MyComponent = ({ accessToken }) => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("failed to create playlist");
-
-        const data = response.data.json();
+      if (response.ok) {
+        const data = await response.json();
         console.log(data);
+        setPlaylistId(data.id);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(playlistId);
 
   return (
     <div>
       <button onClick={createPlaylist}>Create Playlist</button>
+      <SearchSongs {...{ accessToken, albumDetails }} />
     </div>
   );
 };
 
-export default MyComponent;
+export default CreatePlaylist;

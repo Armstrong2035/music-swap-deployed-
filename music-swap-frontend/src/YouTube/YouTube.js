@@ -2,13 +2,11 @@ import react, { useState, useEffect } from "react";
 import GoogleAuth from "./Authentication/GoogleAuth";
 import ReceiveQuery from "./ReceiveQuery/ReceiveQuery";
 import CreatePlaylist from "./CreateCollection/CreatePlaylist";
-import CloneAlbums from "./CloneCollection/CloneAlbums";
+import SearchSongs from "./SearchSongs/SearchSongs";
 
 function YouTube({ filteredAlbums }) {
-  const [accessToken, setAccessToken] = useState(() => {
-    const localData = localStorage.getItem("accessToken");
-    return localData ? JSON.parse(localData) : " ";
-  });
+  const [accessToken, setAccessToken] = useState(null);
+
   const [albumDetails, setAlbumDetails] = useState([]);
 
   const [youTubeAlbums, setYouTubeAlbums] = useState(() => {
@@ -16,14 +14,18 @@ function YouTube({ filteredAlbums }) {
     return localData ? JSON.parse(localData) : [];
   });
 
+  const receiveAccessToken = (token) => {
+    setAccessToken(token);
+  };
+
   console.log(accessToken);
   console.log(albumDetails);
   return (
     <div>
       <h1>YouTube</h1>
-      <GoogleAuth setAccessToken={setAccessToken} />
+      <GoogleAuth receiveAccessToken={receiveAccessToken} />
       <ReceiveQuery {...{ filteredAlbums, albumDetails, setAlbumDetails }} />
-      <CreatePlaylist {...{ albumDetails, accessToken }} />
+      <CreatePlaylist {...{ albumDetails }} />
     </div>
   );
 }
