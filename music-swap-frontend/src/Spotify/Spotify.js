@@ -4,7 +4,7 @@ import ExtractAlbums from "./ExtractCollection/ExtractAlbums";
 import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
 import ViewAlbums from "./ViewCollection/ViewAlbums";
 
-function Spotify({ setAlbums, filteredAlbums }) {
+function Spotify({ setAlbums, filteredAlbums, selectAlbum }) {
   const [accessToken, setAccessToken] = useState(null);
   const [username, setUsername] = useState("");
 
@@ -13,11 +13,13 @@ function Spotify({ setAlbums, filteredAlbums }) {
   };
 
   return (
-    <>
+    <div>
       <SpotifyAuthentication receiveAccessToken={receiveAccessToken} />
-      <ExtractAlbums {...{ accessToken, filteredAlbums, setAlbums }} />
-      <ViewAlbums filteredAlbums={filteredAlbums} />
-    </>
+      <ExtractAlbums
+        {...{ accessToken, filteredAlbums, setAlbums, selectAlbum }}
+      />
+      <ViewAlbums {...{ filteredAlbums, selectAlbum }} />
+    </div>
   );
 }
 

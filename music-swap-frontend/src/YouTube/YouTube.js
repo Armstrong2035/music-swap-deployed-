@@ -4,7 +4,7 @@ import ReceiveQuery from "./ReceiveQuery/ReceiveQuery";
 import CreatePlaylist from "./CreateCollection/CreatePlaylist";
 import SearchSongs from "./SearchSongs/SearchSongs";
 
-function YouTube({ filteredAlbums }) {
+function YouTube({ albumsToClone }) {
   const [accessToken, setAccessToken] = useState(null);
 
   const [albumDetails, setAlbumDetails] = useState([]);
@@ -24,7 +24,7 @@ function YouTube({ filteredAlbums }) {
     <div>
       <h1>YouTube</h1>
       <GoogleAuth receiveAccessToken={receiveAccessToken} />
-      <ReceiveQuery {...{ filteredAlbums, albumDetails, setAlbumDetails }} />
+      <ReceiveQuery {...{ albumsToClone, albumDetails, setAlbumDetails }} />
       <CreatePlaylist {...{ albumDetails }} />
     </div>
   );

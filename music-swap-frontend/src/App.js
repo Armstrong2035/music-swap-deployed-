@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Spotify from "./Spotify/Spotify";
 import YouTube from "./YouTube/YouTube";
 
@@ -7,6 +7,7 @@ function App() {
     const localData = localStorage.getItem("albums");
     return localData ? JSON.parse(localData) : [];
   });
+  const [albumsToClone, setAlbumsToClone] = useState([]);
 
   const filteredAlbums = useMemo(
     () =>
@@ -25,13 +26,21 @@ function App() {
     [albums]
   );
 
-  console.log(filteredAlbums);
+  const selectAlbum = (album) => {
+    if (!albumsToClone.includes(album)) {
+      setAlbumsToClone([...albumsToClone, album]);
+    } else {
+      alert("Album already selected");
+    }
+  };
+
+  console.log(albumsToClone);
 
   return (
-    <>
-      <Spotify {...{ filteredAlbums, setAlbums }} />
-      <YouTube filteredAlbums={filteredAlbums} />
-    </>
+    <div>
+      <Spotify {...{ filteredAlbums, selectAlbum, setAlbums }} />
+      <YouTube {...{ albumsToClone }} />
+    </div>
   );
 }
 

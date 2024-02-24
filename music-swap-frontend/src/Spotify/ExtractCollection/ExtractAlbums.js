@@ -3,8 +3,8 @@ import ViewAlbums from "../ViewCollection/ViewAlbums";
 
 export default function ExtractAlbums({
   accessToken,
-  receiveAlbums,
   setAlbums,
+  filteredAlbums,
 }) {
   // const [albums, setAlbums] = useState(() => {
   //   const localData = localStorage.getItem("albums");
