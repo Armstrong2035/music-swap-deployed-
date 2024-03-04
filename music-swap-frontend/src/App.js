@@ -19,11 +19,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route
-          path="/"
-          element={accessToken ? <Navigate to={"/spotify"} /> : <Home />}
-        /> */}
-        <Route path="/" element={<Spotify {...{ selectAlbum }} />}></Route>
+        <Route path="/" element={<Spotify />}></Route>
 
         <Route
           path="/youtube"

@@ -2,7 +2,23 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useStore } from "../../Store/Store";
 
 export default function ViewAlbums({ selectAlbum }) {
-  const { albums } = useStore((state) => state);
+  const { albums, addToAlbumsToClone, removeFromAlbumsToClone, albumsToClone } =
+    useStore((state) => state);
+
+  //
+
+  const handleCheckboxClick = (album) => {
+    if (albumsToClone.includes(album)) {
+      // If the album is already in albumsToClone, remove it
+      removeFromAlbumsToClone(album);
+    } else {
+      // If the album is not in albumsToClone, add it
+      addToAlbumsToClone(album);
+    }
+  };
+  console.log(albums);
+
+  console.log(albumsToClone);
 
   return (
     <div>
@@ -20,7 +36,9 @@ export default function ViewAlbums({ selectAlbum }) {
                 type="checkbox"
                 id={`album-${idx}`}
                 name="album"
-                value={album.id}
+                value={album}
+                checked={albumsToClone.includes(album)}
+                onChange={() => handleCheckboxClick(album)}
               />
             </label>
           </div>
@@ -30,17 +48,4 @@ export default function ViewAlbums({ selectAlbum }) {
       </form>
     </div>
   );
-}
-{
-  /* <ul>
-        {albums.map((album, idx) => (
-          <li key={`${album.id}`}>
-            <div>
-              <img src={album.image} alt={`${album.name} by ${album.artist}`} />
-              {album.name} {album.artist}
-              <button onClick={() => selectAlbum(album)}>+</button>
-            </div>
-          </li>
-        ))}
-      </ul> */
 }

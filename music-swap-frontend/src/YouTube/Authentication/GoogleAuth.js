@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useStore } from "../../Store/Store";
 
 const GoogleAuth = ({ receiveAccessToken }) => {
   const [token, setToken] = useState(null);
   const [client, setClient] = useState(null);
+  const { setYouTubeAccessToken } = useStore((state) => state);
 
   useEffect(() => {
     const loadGoogleIdentityPlatform = () => {
@@ -47,7 +49,7 @@ const GoogleAuth = ({ receiveAccessToken }) => {
     }
   };
 
-  receiveAccessToken(token);
+  setYouTubeAccessToken(token);
 
   // console.log(accessToken);
 

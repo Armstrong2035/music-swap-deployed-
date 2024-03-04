@@ -10,19 +10,12 @@ function Spotify({ setAlbums, filteredAlbums, selectAlbum }) {
   const [username, setUsername] = useState("");
 
   const { accessToken } = useStore((state) => state);
-  // const receiveAccessToken = (token) => {
-  //   setAccessToken(token);
-  // };
 
   return (
     <div>
-      <SpotifyAuthentication
-      //receiveAccessToken={receiveAccessToken}
-      />
-      <ExtractAlbums
-        {...{ accessToken, filteredAlbums, setAlbums, selectAlbum }}
-      />
-      <ViewAlbums {...{ filteredAlbums, selectAlbum }} />
+      <SpotifyAuthentication />
+      <ExtractAlbums />
+      <ViewAlbums />
     </div>
   );
 }
