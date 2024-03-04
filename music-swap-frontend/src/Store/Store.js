@@ -3,8 +3,19 @@ import { create } from "zustand";
 export const useStore = create((set) => ({
   albums: [],
   accessToken: "",
+  albumsToClone: [],
   setAlbums: (albums) => set({ albums }),
   setAccessToken: (accessToken) => set({ accessToken }),
+  addToAlbumsToClone: (album) => {
+    set((state) => {
+      return { albumsToClone: [...state.albumsToClone, album] };
+    });
+  },
+  removeFromAlbumsToClone: (album) => {
+    set((state) => ({
+      albumsToClone: state.albumsToClone.filter((item) => item !== album),
+    }));
+  },
 }));
 
 /* Here are the state variables and what they do:
