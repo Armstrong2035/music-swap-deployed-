@@ -1,14 +1,14 @@
 import { getTokenFromUrl, spotifyLogin } from "./spotifyCredentials";
 import SpotifyWebApi from "spotify-web-api-js";
 import React, { useEffect, useMemo, useState } from "react";
+import { useStore } from "../../Store/Store";
 
 const spotify = new SpotifyWebApi();
-export default function GenerateAccessToken({
-  receiveAccessToken,
-  receiveUserName,
-}) {
+export default function GenerateAccessToken({ receiveAccessToken }) {
   const [token, setToken] = useState("");
   const [displayName, setDisplayName] = useState("");
+
+  const { setAccessToken } = useStore((state) => state);
 
   const spotifyLoginUrl = useMemo(() => spotifyLogin(), []);
 
@@ -25,11 +25,13 @@ export default function GenerateAccessToken({
         window.location.hash = "";
         window.localStorage.setItem("token", urlToken.access_token);
         spotify.setAccessToken(urlToken.access_token);
-        spotify.getMe().then((user) => {
-          receiveUserName(user.display_name);
-          // console.log(`The user is ${user.display_name}`);
-        });
-        receiveAccessToken(urlToken.access_token);
+        // spotify.getMe().then((user) => {
+        //   receiveUserName(user.display_name);
+        //    console.log(`The user is ${user.display_name}`);
+        // });
+        // receiveAccessToken(urlToken.access_token);
+        console.log(urlToken.access_token);
+        setAccessToken(urlToken.access_token);
       }
     } else if (storedToken) {
       setToken(storedToken);

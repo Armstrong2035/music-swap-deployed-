@@ -15,6 +15,6 @@ export default function ReceiveQuery({
       };
     });
     setAlbumDetails(query);
-  }, [albumsToClone]);
+  }, []);
   return <></>;
 }

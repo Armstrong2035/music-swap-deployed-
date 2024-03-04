@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useStore } from "../../Store/Store";
 
-export default function ViewAlbums({ filteredAlbums, selectAlbum }) {
+export default function ViewAlbums({ selectAlbum }) {
+  const { albums } = useStore((state) => state);
+
+  console.log(albums);
+  // console.log(filteredAlbums);
   return (
     <div>
       <h3>
@@ -8,7 +13,7 @@ export default function ViewAlbums({ filteredAlbums, selectAlbum }) {
         for now
       </h3>
       <ul>
-        {filteredAlbums.map((album, idx) => (
+        {albums.map((album, idx) => (
           <li key={`${album.id}`}>
             <div>
               <img src={album.image} alt={`${album.name} by ${album.artist}`} />
