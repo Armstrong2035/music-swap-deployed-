@@ -4,7 +4,9 @@ import { useStore } from "../../Store/Store";
 const GoogleAuth = ({ receiveAccessToken }) => {
   const [token, setToken] = useState(null);
   const [client, setClient] = useState(null);
-  const { setYouTubeAccessToken } = useStore((state) => state);
+  const { youTubeAccessToken, setYouTubeAccessToken } = useStore(
+    (state) => state
+  );
 
   useEffect(() => {
     const loadGoogleIdentityPlatform = () => {
@@ -20,12 +22,12 @@ const GoogleAuth = ({ receiveAccessToken }) => {
     const initTokenClient = () => {
       const tokenClient = window.google.accounts.oauth2.initTokenClient({
         client_id:
-          "546085219636-h1p4fv5god85oqf0vcihj64d20t05bao.apps.googleusercontent.com",
+          "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
         scope:
           "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
         callback: (response) => {
           console.log(response);
-          setToken(response);
+          setYouTubeAccessToken(response);
         },
       });
       setClient(tokenClient);
@@ -49,7 +51,8 @@ const GoogleAuth = ({ receiveAccessToken }) => {
     }
   };
 
-  setYouTubeAccessToken(token);
+  // setYouTubeAccessToken(token);
+  console.log(youTubeAccessToken);
 
   // console.log(accessToken);
 

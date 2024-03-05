@@ -12,22 +12,11 @@ import Home from "./Home/Home";
 import { useStore } from "./Store/Store";
 
 function App() {
-  const [albumsToClone, setAlbumsToClone] = useState([]);
-
-  // console.log(albumsToClone);
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Spotify />}></Route>
-
-        <Route
-          path="/youtube"
-          element={<YouTube {...{ albumsToClone }} />}
-        ></Route>
-      </Routes>
-      <Outlet />
-    </Router>
+    <div>
+      <Spotify />
+      <YouTube />
+    </div>
   );
 }
 

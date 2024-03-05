@@ -6,9 +6,6 @@ import ViewAlbums from "./ViewCollection/ViewAlbums";
 import { useStore } from "../Store/Store";
 
 function Spotify({ setAlbums, filteredAlbums, selectAlbum }) {
-  // const [accessToken, setAccessToken] = useState(null);
-  const [username, setUsername] = useState("");
-
   const { accessToken } = useStore((state) => state);
 
   return (

@@ -1,32 +1,15 @@
 import React, { useState } from "react";
-// import SearchSongs from "../SearchSongs/SearchSongs";
+import { useStore } from "../../Store/Store";
 
-const CreatePlaylist = ({
-  accessToken = "ya29.a0AfB_byBKZKqsZcPqFTmCB37tQG5U0xvkJrMnkBM9voF5CjDVI0qDLl9_GAP_GTODIrgMfV9UbtawMT8NjijaNGZaQgekd7MGWfYTSu1iXUtVN_eklGuAU6qSEeQkUlZQyxKisamuQ5IvuCsIcPdEu0ItS3MhYBgB5UAaCgYKAT4SARMSFQHGX2Mi67JJouiEbocLaIY5iKnO9A0170",
-  // albumDetails,
-}) => {
-  const albumDetails = [
-    {
-      title: "Album 1",
-      tracks: [
-        "Bohemian Rhapsody - Queen",
-        "Hotel California - Eagles",
-        "Stairway to Heaven - Led Zeppelin",
-      ],
-    },
-    {
-      title: "Album 2",
-      tracks: [
-        "Imagine - John Lennon",
-        "Hey Jude - The Beatles",
-        "Thriller - Michael Jackson",
-      ],
-    },
-  ];
-  console.log(albumDetails);
+const CreatePlaylist = () => {
+  const { youTubeAccessToken: accessToken, queries } = useStore(
+    (state) => state
+  );
+
+  // console.log(accessToken);
 
   const createPlaylist = async () => {
-    for (const album of albumDetails) {
+    for (const album of queries) {
       try {
         const playlistResponse = await fetch(
           "https://www.googleapis.com/youtube/v3/playlists?part=id,snippet",
