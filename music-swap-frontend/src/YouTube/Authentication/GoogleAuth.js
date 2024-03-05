@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useStore } from "../../Store/Store";
 
 const GoogleAuth = ({ receiveAccessToken }) => {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
   const [client, setClient] = useState(null);
   const { youTubeAccessToken, setYouTubeAccessToken } = useStore(
     (state) => state

@@ -6,7 +6,7 @@ const CreatePlaylist = () => {
     (state) => state
   );
 
-  // console.log(accessToken);
+  console.log(accessToken);
 
   const createPlaylist = async () => {
     for (const album of queries) {
@@ -16,13 +16,13 @@ const CreatePlaylist = () => {
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: `Bearer ${accessToken.access_token}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
               snippet: {
                 title: album.title,
-                description: "just testing",
+                description: "",
                 status: {
                   privacyStatus: "public",
                 },
@@ -47,7 +47,7 @@ const CreatePlaylist = () => {
             {
               method: "POST",
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken.access_token}`,
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
