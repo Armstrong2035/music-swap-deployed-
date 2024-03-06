@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useStore } from "../../Store/Store";
+import { Link } from "react-router-dom";
 
 export default function ViewAlbums({ selectAlbum }) {
   const { albums, addToAlbumsToClone, removeFromAlbumsToClone, albumsToClone } =
@@ -43,9 +44,11 @@ export default function ViewAlbums({ selectAlbum }) {
             </label>
           </div>
         ))}
-
-        <button type="submit">Clone Albums</button>
       </form>
+
+      <div>
+        <Link to="/youtube"> Confirm </Link>
+      </div>
     </div>
   );
 }

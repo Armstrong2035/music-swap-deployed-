@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <div>
       <h1>Transfer your music from:</h1>
-      <Link to="/spotify">Spotify</Link>
+      <div>
+        <Link to="/spotify/login">Spotify</Link>
+      </div>
     </div>
   );
 }
