@@ -47,7 +47,7 @@ export default function ViewAlbums({ selectAlbum }) {
       </form>
 
       <div>
-        <Link to="/youtube"> Confirm </Link>
+        <Link to="/youtube/login"> Confirm </Link>
       </div>
     </div>
   );

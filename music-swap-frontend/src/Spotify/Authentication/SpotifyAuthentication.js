@@ -52,7 +52,6 @@ export default function SpotifyAuthentication() {
   return (
     <div>
       <button onClick={handleLoginClick}>Login to Spotify</button>
-      {/* <Link to="/spotify/extractalbums"> Extract Albums </Link> */}
     </div>
   );
 }

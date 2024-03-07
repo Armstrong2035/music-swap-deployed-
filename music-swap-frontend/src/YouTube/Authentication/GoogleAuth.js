@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../Store/Store";
+import { useNavigate } from "react-router-dom";
 
 const GoogleAuth = ({ receiveAccessToken }) => {
   // const [token, setToken] = useState(null);
@@ -7,6 +8,7 @@ const GoogleAuth = ({ receiveAccessToken }) => {
   const { youTubeAccessToken, setYouTubeAccessToken } = useStore(
     (state) => state
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadGoogleIdentityPlatform = () => {
@@ -28,6 +30,10 @@ const GoogleAuth = ({ receiveAccessToken }) => {
         callback: (response) => {
           console.log(response);
           setYouTubeAccessToken(response);
+
+          if (response) {
+            navigate("/youtube/receivequery");
+          }
         },
       });
       setClient(tokenClient);

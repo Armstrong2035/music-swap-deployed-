@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CloneAlbum from "../CreateCollection/CreatePlaylist";
-import SearchAlbums from "../CreateCollection/CreatePlaylist";
+import CreatePlaylist from "../CreateCollection/CreatePlaylist";
 import { useStore } from "../../Store/Store";
 
 export default function ReceiveQuery() {
@@ -17,5 +17,9 @@ export default function ReceiveQuery() {
   }, [albumsToClone]);
 
   console.log(albumsToClone);
-  return <></>;
+  return (
+    <>
+      <CreatePlaylist />
+    </>
+  );
 }

@@ -13,6 +13,8 @@ import YouTube from "./YouTube/YouTube";
 import Home from "./Home/Home";
 import { useStore } from "./Store/Store";
 import ExtractAlbums from "./Spotify/ExtractCollection/ExtractAlbums";
+import ReceiveQuery from "./YouTube/ReceiveQuery/ReceiveQuery";
+import GoogleAuth from "./YouTube/Authentication/GoogleAuth";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/spotify/extractalbums" element={<ExtractAlbums />} />
         <Route path="/spotify/viewalbums" element={<ViewAlbums />} />
         <Route path="/youtube" element={<YouTube />} />
+        <Route path="/youtube/login" element={<GoogleAuth />} />
+        <Route path="/youtube/receivequery" element={<ReceiveQuery />} />
       </Routes>
     </Router>
   );
