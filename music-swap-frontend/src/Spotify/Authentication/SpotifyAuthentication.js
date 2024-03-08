@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useStore } from "../../Store/Store";
 import { Link, useNavigate } from "react-router-dom";
 import ExtractAlbums from "../ExtractCollection/ExtractAlbums";
+import { Container, Button, Typography } from "@mui/material";
 
 const spotify = new SpotifyWebApi();
 export default function SpotifyAuthentication() {
@@ -50,8 +51,8 @@ export default function SpotifyAuthentication() {
   };
 
   return (
-    <div>
+    <Container>
       <button onClick={handleLoginClick}>Login to Spotify</button>
-    </div>
+    </Container>
   );
 }
