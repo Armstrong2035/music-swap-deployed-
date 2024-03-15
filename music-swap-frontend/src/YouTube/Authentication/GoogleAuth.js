@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../Store/Store";
 import { useNavigate } from "react-router-dom";
+import { Card, CardContent, CardMedia, Typography, Stack } from "@mui/material";
+import youtubeicon from "../../mediaa/youtubeicon.png";
 
-const GoogleAuth = ({ receiveAccessToken }) => {
-  // const [token, setToken] = useState(null);
+const GoogleAuth = ({ isYouTubeActive }) => {
   const [client, setClient] = useState(null);
   const { youTubeAccessToken, setYouTubeAccessToken } = useStore(
     (state) => state
   );
+  const [color, setColor] = useState(isYouTubeActive ? "#011A51" : "grey");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const GoogleAuth = ({ receiveAccessToken }) => {
     const initTokenClient = () => {
       const tokenClient = window.google.accounts.oauth2.initTokenClient({
         client_id:
-          "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
+          "546085219636-h1p4fv5god85oqf0vcihj64d20t05bao.apps.googleusercontent.com",
         scope:
           "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
         callback: (response) => {
@@ -63,9 +65,39 @@ const GoogleAuth = ({ receiveAccessToken }) => {
   // console.log(accessToken);
 
   return (
-    <div>
-      <button onClick={handleAuthClick}>Login to YouTube</button>
-    </div>
+    <Card
+      variant="outlined"
+      sx={{
+        backgroundColor: color,
+        color: "black",
+        maxwidth: 300,
+      }}
+      raised={true}
+      onClick={handleAuthClick}
+    >
+      <CardContent>
+        <Stack
+          direction={"row"}
+          spacing={2}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <CardMedia>
+            <img src={youtubeicon} />
+          </CardMedia>
+          <Typography
+            variant="h4"
+            component="p"
+            gutterBottom
+            sx={{
+              color: "white",
+            }}
+          >
+            YouTube
+          </Typography>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 };
 

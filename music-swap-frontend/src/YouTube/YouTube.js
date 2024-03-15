@@ -3,7 +3,7 @@ import GoogleAuth from "./Authentication/GoogleAuth";
 import ReceiveQuery from "./ReceiveQuery/ReceiveQuery";
 import CreatePlaylist from "./CreateCollection/CreatePlaylist";
 
-function YouTube({ albumsToClone }) {
+function YouTube() {
   return (
     <div>
       <h1>YouTube</h1>

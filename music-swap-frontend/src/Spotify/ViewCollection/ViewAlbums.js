@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useStore } from "../../Store/Store";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Card,
+  Container,
+  Typography,
+  FormGroup,
+  CardContent,
+  CardMedia,
+  CardActions,
+  Checkbox,
+  Grid,
+} from "@mui/material";
 
 export default function ViewAlbums({ selectAlbum }) {
   const { albums, addToAlbumsToClone, removeFromAlbumsToClone, albumsToClone } =
@@ -22,33 +34,59 @@ export default function ViewAlbums({ selectAlbum }) {
   console.log(albumsToClone);
 
   return (
-    <div>
-      <h3>
-        These are your Spotify Albums. You can only pick one to send to YouTube,
-        for now
-      </h3>
-      <form>
+    <Container>
+      <Typography variant="h4" component="h4" gutterBottom>
+        Albums to Clone
+      </Typography>
+      <FormGroup>
         {albums.map((album, idx) => (
-          <div key={idx}>
-            <label htmlFor={`album-${idx}`}>
-              <img src={album.image} alt={`${album.name} by ${album.artist}`} />
-              {album.name} {album.artist}
-              <input
-                type="checkbox"
-                id={`album-${idx}`}
-                name="album"
-                value={album}
-                checked={albumsToClone.includes(album)}
-                onChange={() => handleCheckboxClick(album)}
-              />
-            </label>
-          </div>
-        ))}
-      </form>
+          <Card key={idx}>
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"flex-start"}
+              direction={"row"}
+              spacing={0}
+            >
+              <Grid item xs={4} sm={4}>
+                <CardMedia>
+                  <img
+                    src={album.image}
+                    alt={`${album.name} by ${album.artist}`}
+                  />
+                </CardMedia>
+              </Grid>
+              <Grid item xs={4} sm={4}>
+                <CardContent>
+                  <Typography>
+                    {album.name} {album.artist}
+                  </Typography>
+                </CardContent>
+              </Grid>
 
-      <div>
-        <Link to="/youtube/login"> Confirm </Link>
-      </div>
-    </div>
+              <Grid item xs={4} sm={4}>
+                <CardActions>
+                  <Checkbox
+                    id={`album-${idx}`}
+                    name="album"
+                    value={album}
+                    checked={albumsToClone.includes(album)}
+                    onChange={() => handleCheckboxClick(album)}
+                    defaultColor={"success"}
+                    size={"large"}
+                  />
+                </CardActions>
+              </Grid>
+            </Grid>
+          </Card>
+        ))}
+      </FormGroup>
+
+      <Link to="/transfer">
+        <Button variant={"contained"} sx={{ backgroundColor: "#011A51" }}>
+          Next
+        </Button>
+      </Link>
+    </Container>
   );
 }

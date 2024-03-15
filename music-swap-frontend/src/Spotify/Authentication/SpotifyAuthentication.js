@@ -4,10 +4,23 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useStore } from "../../Store/Store";
 import { Link, useNavigate } from "react-router-dom";
 import ExtractAlbums from "../ExtractCollection/ExtractAlbums";
-import { Container, Button, Typography } from "@mui/material";
+import {
+  Container,
+  Button,
+  Typography,
+  Grid,
+  Modal,
+  ButtonBase,
+  CardMedia,
+  Card,
+  Stack,
+  CardContent,
+} from "@mui/material";
+import spotifyicon from "../../mediaa/spotifyicon.png";
 
 const spotify = new SpotifyWebApi();
-export default function SpotifyAuthentication() {
+export default function SpotifyAuthentication({ isSpotifyActive }) {
+  const [color, setColor] = useState(isSpotifyActive ? "#011A51" : "#E0E0E0");
   const [token, setToken] = useState("");
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
@@ -51,8 +64,38 @@ export default function SpotifyAuthentication() {
   };
 
   return (
-    <Container>
-      <button onClick={handleLoginClick}>Login to Spotify</button>
-    </Container>
+    <Card
+      variant="outlined"
+      sx={{
+        backgroundColor: color,
+        color: "black",
+        maxwidth: 300,
+      }}
+      raised={true}
+      onClick={handleLoginClick}
+    >
+      <CardContent>
+        <Stack
+          direction={"row"}
+          spacing={2}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <CardMedia>
+            <img src={spotifyicon} />
+          </CardMedia>
+          <Typography
+            variant="h4"
+            component="p"
+            gutterBottom
+            sx={{
+              color: "white",
+            }}
+          >
+            Spotify
+          </Typography>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

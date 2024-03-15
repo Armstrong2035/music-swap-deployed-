@@ -6,10 +6,14 @@ export const useStore = create((set) => ({
   albumsToClone: [],
   youTubeAccessToken: "",
   queries: [],
+  uploadData: [],
+  color: "",
   setAlbums: (albums) => set({ albums }),
   setAccessToken: (accessToken) => set({ accessToken }),
   setYouTubeAccessToken: (youTubeAccessToken) => set({ youTubeAccessToken }),
   setQueries: (queries) => set({ queries }),
+  setUploadData: (newUploadobject) =>
+    set((state) => ({ uploadData: [...state.uploadData, newUploadobject] })),
   addToAlbumsToClone: (album) => {
     set((state) => {
       return { albumsToClone: [...state.albumsToClone, album] };

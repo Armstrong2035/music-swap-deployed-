@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import { useStore } from "../../Store/Store";
+import { create } from "@mui/material/styles/createTransitions";
+import {
+  Box,
+  Container,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+  Button,
+  CardMedia,
+  Grid,
+} from "@mui/material";
+import PlaylistAddCheckCircleRoundedIcon from "@mui/icons-material/PlaylistAddCheckCircleRounded";
 
 const CreatePlaylist = () => {
   const { youTubeAccessToken: accessToken, queries } = useStore(
@@ -68,10 +81,52 @@ const CreatePlaylist = () => {
     }
   };
 
+  for (const i of queries) {
+    console.log(i);
+  }
+
   return (
-    <div>
-      <button onClick={createPlaylist}>Create Playlist</button>
-    </div>
+    <Container>
+      {queries.map((query, index) => (
+        <Card key={index}>
+          <Grid
+            container
+            direction={"column"}
+            justifyItems={"center"}
+            spacing={5}
+          >
+            <Grid item xs={12} sm={12} md={4} lg={6}>
+              <CardContent>
+                <Grid container spacing={5}>
+                  <Grid item>
+                    <CardMedia>
+                      <img src={query.image} />
+                    </CardMedia>
+                  </Grid>
+                  <Grid item>
+                    <Typography>{`${query.title}`}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <PlaylistAddCheckCircleRoundedIcon />
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Grid>
+          </Grid>
+        </Card>
+      ))}
+
+      <Button
+        sx={{
+          backgroundColor: "#011A51",
+          color: "white",
+          maxwidth: 300,
+        }}
+        onClick={createPlaylist}
+      >
+        Clone your playlists
+      </Button>
+    </Container>
   );
 };
 
