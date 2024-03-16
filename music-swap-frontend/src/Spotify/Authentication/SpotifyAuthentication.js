@@ -42,11 +42,7 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
         window.location.hash = "";
         window.localStorage.setItem("token", urlToken.access_token);
         spotify.setAccessToken(urlToken.access_token);
-        // spotify.getMe().then((user) => {
-        //   receiveUserName(user.display_name);
-        //    console.log(`The user is ${user.display_name}`);
-        // });
-        // receiveAccessToken(urlToken.access_token);
+
         console.log(urlToken.access_token);
         setAccessToken(urlToken.access_token);
         if (urlToken.access_token) {
