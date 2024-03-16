@@ -12,18 +12,21 @@ import {
   CardMedia,
   Grid,
 } from "@mui/material";
-import PlaylistAddCheckCircleRoundedIcon from "@mui/icons-material/PlaylistAddCheckCircleRounded";
+
+import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
+import { green } from "@mui/material/colors";
 
 const CreatePlaylist = () => {
   const { youTubeAccessToken: accessToken, queries } = useStore(
     (state) => state
   );
 
-  console.log(accessToken);
+  const [checkMarkButton, setCheckMarkButton] = useState(false);
 
   const createPlaylist = async () => {
     for (const album of queries) {
       try {
+        album.status = false;
         const playlistResponse = await fetch(
           "https://www.googleapis.com/youtube/v3/playlists?part=id,snippet",
           {
@@ -75,15 +78,13 @@ const CreatePlaylist = () => {
             }
           );
         }
+
+        album.status = true;
       } catch (error) {
         console.error("Error creating playlist:", error);
       }
     }
   };
-
-  for (const i of queries) {
-    console.log(i);
-  }
 
   return (
     <Container>
@@ -107,7 +108,9 @@ const CreatePlaylist = () => {
                     <Typography>{`${query.title}`}</Typography>
                   </Grid>
                   <Grid item>
-                    <PlaylistAddCheckCircleRoundedIcon />
+                    <CheckCircleTwoToneIcon
+                      sx={{ color: query.status ? "green" : "inherit" }}
+                    />
                   </Grid>
                 </Grid>
               </CardContent>
