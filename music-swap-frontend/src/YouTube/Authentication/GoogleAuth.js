@@ -28,6 +28,8 @@ const GoogleAuth = ({ isYouTubeActive }) => {
         client_id:
           "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
 
+        redirect_uri: "https://musicswap-gamma.vercel.app/youtube/login",
+
         scope:
           "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
         callback: (response) => {
