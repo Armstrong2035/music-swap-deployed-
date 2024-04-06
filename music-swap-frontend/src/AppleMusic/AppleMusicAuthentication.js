@@ -16,7 +16,7 @@ export default function AppleMusicAuthentication({ isAppleMusicActive }) {
     <Box
       variant="outlined"
       sx={{
-        backgroundColor: color,
+        backgroundColor: "#F5F5F5",
         color: "black",
         width: "300px",
         height: "100px",
@@ -38,7 +38,7 @@ export default function AppleMusicAuthentication({ isAppleMusicActive }) {
           component="p"
           gutterBottom
           sx={{
-            color: "white",
+            color: "000000",
           }}
         >
           Apple Music

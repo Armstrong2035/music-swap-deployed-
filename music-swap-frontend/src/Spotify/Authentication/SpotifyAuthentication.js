@@ -65,7 +65,7 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
       <Box
         variant="outlined"
         sx={{
-          backgroundColor: "#003566",
+          backgroundColor: "#F5F5F5",
           color: "black",
           width: "300px",
           height: "100px",
@@ -88,7 +88,7 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
             component="p"
             gutterBottom
             sx={{
-              color: "white",
+              color: "#000000",
             }}
           >
             Spotify

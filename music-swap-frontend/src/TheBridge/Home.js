@@ -11,6 +11,8 @@ import {
   CardContent,
   Stack,
   Box,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import SpotifyAuthentication from "../Spotify/Authentication/SpotifyAuthentication";
 import AppleMusicAuthentication from "../AppleMusic/AppleMusicAuthentication";
@@ -23,28 +25,45 @@ export default function Home() {
   const isAppleMusicActive = false;
   const activeStep = 0;
   return (
-    <div style={{ backgroundColor: "#fffff", height: "100vh" }}>
-      <Box sx={{ width: "100%" }}>
-        <StepperComponent activeStep={activeStep} />
-      </Box>
-
-      <Grid
-        container
-        spacing={3}
-        alignItems={"center"}
-        justifyContent={"flex-start"}
-        sx={{ padding: 5 }}
+    <div style={{ backgroundColor: "#011A51" }}>
+      <AppBar
+        position="static"
+        sx={{ padding: "20px", backgroundColor: "#0d2a67" }}
       >
-        <Grid item>
-          <SpotifyAuthentication isSpotifyActive={isSpotifyActive} />
+        <Toolbar></Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          // justifyContent: "center",
+          height: "100vh",
+          padding: "30px",
+        }}
+      >
+        <Typography variant="h4" poppins sx={{ color: "#F8F8F8" }}>
+          Transfer Music From
+        </Typography>
+        <Grid
+          container
+          spacing={3}
+          alignItems={"center"}
+          justifyContent={"center"}
+          sx={{ padding: 5 }}
+        >
+          <Grid item>
+            <SpotifyAuthentication isSpotifyActive={isSpotifyActive} />
+          </Grid>
+          <Grid item>
+            <GoogleAuth isYouTubeActive={isYouTubeActive} />
+          </Grid>
+          <Grid item>
+            <AppleMusicAuthentication />
+          </Grid>
         </Grid>
-        <Grid item>
-          <GoogleAuth isYouTubeActive={isYouTubeActive} />
-        </Grid>
-        <Grid item>
-          <AppleMusicAuthentication />
-        </Grid>
-      </Grid>
+      </Box>
     </div>
   );
 }

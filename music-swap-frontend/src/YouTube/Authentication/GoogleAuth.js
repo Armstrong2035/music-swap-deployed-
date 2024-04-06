@@ -81,7 +81,7 @@ const GoogleAuth = ({ isYouTubeActive }) => {
     <Box
       variant="outlined"
       sx={{
-        backgroundColor: color,
+        backgroundColor: "#F5F5F5",
         color: "black",
         width: "300px",
         height: "100px",
@@ -104,7 +104,7 @@ const GoogleAuth = ({ isYouTubeActive }) => {
           component="p"
           gutterBottom
           sx={{
-            color: "white",
+            color: "000000",
           }}
         >
           YouTube

@@ -32,12 +32,12 @@ export const useStore = create((set) => ({
 
   addToPlaylistsToClone: (album) => {
     set((state) => {
-      return { albumsToClone: [...state.albumsToClone, album] };
+      return { playlistsToClone: [...state.playlistsToClone, album] };
     });
   },
   removeFromPlaylistsToClone: (album) => {
     set((state) => ({
-      albumsToClone: state.albumsToClone.filter((item) => item !== album),
+      playlistsToClone: state.playlistsToClone.filter((item) => item !== album),
     }));
   },
 

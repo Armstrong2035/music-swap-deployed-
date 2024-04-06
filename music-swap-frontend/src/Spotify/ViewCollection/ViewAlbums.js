@@ -19,6 +19,8 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
@@ -66,119 +68,140 @@ export default function ViewAlbums({ selectAlbum }) {
 
   return (
     <>
-      <Box sx={{ padding: "10px" }}>
-        <Tabs
-          value={currentTab}
-          onChange={handleTabChange}
-          aria-label="Tabs for albums and playlists"
+      <div
+        style={{
+          backgroundColor: "#011A51",
+          height: "100vh",
+          overflow: "hide",
+        }}
+      >
+        <AppBar
+          position="static"
+          sx={{ padding: "20px", backgroundColor: "#0d2a67" }}
         >
-          <Tab label="Albums" />
-          <Tab label="Playlists" />
-        </Tabs>
+          <Toolbar></Toolbar>
+        </AppBar>
 
-        {currentTab === 0 && (
-          <>
-            <Typography variant="h4" component="h4" gutterBottom>
-              Albums to Clone
-            </Typography>
-            <FormGroup>
-              {albums.map((album, idx) => (
-                <Box>
-                  <Stack
-                    container
-                    alignItems={"center"}
-                    justifyContent={"flex-start"}
-                    direction={"row"}
-                    spacing={4}
-                  >
-                    <img
-                      src={album.image}
-                      alt={`${album.name} by ${album.artist}`}
-                    />
+        <Box
+          sx={{
+            padding: "5px 50px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Tabs
+            value={currentTab}
+            onChange={handleTabChange}
+            aria-label="Tabs for albums and playlists"
+          >
+            <Tab label="Albums" sx={{ color: "#F8F8F8" }} />
+            <Tab label="Playlists" sx={{ color: "#F8F8F8" }} />
+          </Tabs>
 
-                    <Typography>
-                      {album.name} {album.artist}
-                    </Typography>
-
-                    <Checkbox
-                      id={`album-${idx}`}
-                      name="album"
-                      value={album}
-                      checked={albumsToClone.includes(album)}
-                      onChange={() => handleCheckboxClickAlbums(album)}
-                      defaultColor={"success"}
-                      size={"large"}
-                    />
-                  </Stack>
-                </Box>
-              ))}
-            </FormGroup>
-          </>
-        )}
-
-        {currentTab === 1 && (
-          <>
-            <Typography variant="h4" component="h4" gutterBottom>
-              playlists To Clone
-            </Typography>
-            <FormGroup>
-              {playlists.map((playlist, idx) => (
-                <Box>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ArrowDropDownIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
+          {currentTab === 0 && (
+            <>
+              <FormGroup>
+                {albums.map((album, idx) => (
+                  <Box sx={{ marginTop: "15px", backgroundColor: "#1f3c7e" }}>
+                    <Stack
+                      container
+                      alignItems={"center"}
+                      justifyContent={"flex-start"}
+                      direction={"row"}
+                      spacing={4}
                     >
-                      <Stack
-                        container
-                        alignItems={"center"}
-                        justifyContent={"flex-start"}
-                        direction={"row"}
-                        spacing={4}
+                      <img
+                        src={album.image}
+                        alt={`${album.name} by ${album.artist}`}
+                      />
+
+                      <Typography sx={{ color: "#F8F8F8" }}>
+                        {album.name} {album.artist}
+                      </Typography>
+
+                      <Checkbox
+                        id={`album-${idx}`}
+                        name="album"
+                        value={album}
+                        checked={albumsToClone.includes(album)}
+                        onChange={() => handleCheckboxClickAlbums(album)}
+                        size={"large"}
+                        sx={{ color: "#F8F8F8" }}
+                      />
+                    </Stack>
+                  </Box>
+                ))}
+              </FormGroup>
+            </>
+          )}
+
+          {currentTab === 1 && (
+            <>
+              <FormGroup sx={{ height: "100%" }}>
+                {playlists.map((playlist, idx) => (
+                  <Box sx={{ backgroundColor: "#1f3c7e", marginTop: "15px" }}>
+                    <Accordion sx={{ backgroundColor: "#1f3c7e" }}>
+                      <AccordionSummary
+                        expandIcon={<ArrowDropDownIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
                       >
-                        <img src={null} />
+                        <Stack
+                          container
+                          alignItems={"center"}
+                          justifyContent={"flex-start"}
+                          direction={"row"}
+                          spacing={4}
+                        >
+                          <img src={null} />
 
-                        <Typography>{playlist.name}</Typography>
+                          <Typography sx={{ color: "#F8F8F8" }}>
+                            {playlist.name}
+                          </Typography>
 
-                        <Checkbox
-                          id={`playlist-${idx}`}
-                          name="playlist"
-                          value={playlist}
-                          checked={playlistsToClone.includes(playlist)}
-                          onChange={() =>
-                            handleCheckboxClickPlaylists(playlist)
-                          }
-                          defaultColor={"success"}
-                          size={"large"}
-                        />
-                      </Stack>
-                    </AccordionSummary>
+                          <Checkbox
+                            id={`playlist-${idx}`}
+                            name="playlist"
+                            value={playlist}
+                            checked={playlistsToClone.includes(playlist)}
+                            onChange={() =>
+                              handleCheckboxClickPlaylists(playlist)
+                            }
+                            size={"large"}
+                            sx={{ color: "#F8F8F8" }}
+                          />
+                        </Stack>
+                      </AccordionSummary>
 
-                    <AccordionDetails>
-                      {playlist.tracks.map((track) => (
-                        <>
-                          <Stack>
-                            <Typography>
-                              {`${track.name} ${track.artist}`}
-                            </Typography>
-                          </Stack>
-                        </>
-                      ))}
-                    </AccordionDetails>
-                  </Accordion>
-                </Box>
-              ))}
-            </FormGroup>
-          </>
-        )}
+                      <AccordionDetails>
+                        {playlist.tracks.map((track) => (
+                          <>
+                            <Stack>
+                              <Typography sx={{ color: "#F8F8F8" }}>
+                                {`${track.name} ${track.artist}`}
+                              </Typography>
+                            </Stack>
+                          </>
+                        ))}
+                      </AccordionDetails>
+                    </Accordion>
+                  </Box>
+                ))}
+              </FormGroup>
+            </>
+          )}
 
-        <Link to="/transfer">
-          <Button variant={"contained"} sx={{ backgroundColor: "#011A51" }}>
-            Next
-          </Button>
-        </Link>
-      </Box>
+          <Link to="/transfer">
+            <Button
+              variant={"contained"}
+              sx={{ backgroundColor: "#1f3c7e", marginTop: "5px" }}
+            >
+              Next
+            </Button>
+          </Link>
+        </Box>
+      </div>
     </>
   );
 }

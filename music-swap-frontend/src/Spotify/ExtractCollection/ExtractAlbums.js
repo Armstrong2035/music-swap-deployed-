@@ -53,11 +53,14 @@ export default function ExtractAlbums() {
               );
               const playlistData = await playlistResponse.json();
 
+              console.log(playlistData);
+
               return {
                 id: playlistData.id,
                 name: playlistData.name
                   ? playlistData.name
                   : playlistData.owner.display_name,
+
                 tracks: playlistData.tracks.items.map((track) => ({
                   name: track.track.name,
                   artist: track.track.artists[0].name,
