@@ -10,34 +10,57 @@ import {
   Card,
   CardContent,
   Stack,
+  Box,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
-
 import SpotifyAuthentication from "../Spotify/Authentication/SpotifyAuthentication";
-import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
 import AppleMusicAuthentication from "../AppleMusic/AppleMusicAuthentication";
+import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
+import StepperComponent from "../StepperComponent";
 
-export default function TransferTo() {
-  const isSpotifyActive = false;
-  const isYouTubeActive = true;
-  const isAppleMusicActive = false;
+export default function Home() {
   return (
-    <Container maxWidth={"xl"}>
-      <Grid
-        container
-        spacing={3}
-        alignItems={"center"}
-        justifyContent={"center"}
+    <div style={{ backgroundColor: "#011A51" }}>
+      <AppBar
+        position="static"
+        sx={{ padding: "20px", backgroundColor: "#0d2a67" }}
       >
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <GoogleAuth isYouTubeActive={isYouTubeActive} />
+        <Toolbar></Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          // justifyContent: "center",
+          height: "100vh",
+          padding: "30px",
+        }}
+      >
+        <Typography variant="h4" poppins sx={{ color: "#F8F8F8" }}>
+          Transfer Music To
+        </Typography>
+        <Grid
+          container
+          spacing={3}
+          alignItems={"center"}
+          justifyContent={"center"}
+          sx={{ padding: 5 }}
+        >
+          <Grid item>
+            <GoogleAuth />
+          </Grid>
+          <Grid item>
+            <SpotifyAuthentication />
+          </Grid>
+
+          <Grid item>
+            <AppleMusicAuthentication />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <SpotifyAuthentication isSpotifyActive={isSpotifyActive} />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <AppleMusicAuthentication />
-        </Grid>
-      </Grid>
-    </Container>
+      </Box>
+    </div>
   );
 }

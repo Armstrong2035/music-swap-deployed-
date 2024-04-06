@@ -17,9 +17,7 @@ const GoogleAuth = ({ isYouTubeActive }) => {
     (state) => state
   );
   const [color, setColor] = useState(isYouTubeActive ? "#011A51" : "grey");
-  const [onClick, setOnClick] = useState(
-    isYouTubeActive ? handleAuthClick : null
-  );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +36,9 @@ const GoogleAuth = ({ isYouTubeActive }) => {
         client_id:
           "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
 
-        redirect_uri: "https://musicswap-gamma.vercel.app/youtube/login",
+        redirect_uri: "http://localhost3000/youtube/login",
+
+        //"https://musicswap-gamma.vercel.app/youtube/login"
 
         scope:
           "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner",
@@ -89,7 +89,7 @@ const GoogleAuth = ({ isYouTubeActive }) => {
         alignItems: "center",
         justifyContent: "center",
       }}
-      onClick={onClick}
+      onClick={handleAuthClick}
     >
       <Stack
         direction={"row"}

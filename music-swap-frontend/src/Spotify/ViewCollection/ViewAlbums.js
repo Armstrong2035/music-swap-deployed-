@@ -72,7 +72,7 @@ export default function ViewAlbums({ selectAlbum }) {
         style={{
           backgroundColor: "#011A51",
           height: "100vh",
-          overflow: "hide",
+          overflow: "auto",
         }}
       >
         <AppBar
@@ -177,11 +177,9 @@ export default function ViewAlbums({ selectAlbum }) {
                       <AccordionDetails>
                         {playlist.tracks.map((track) => (
                           <>
-                            <Stack>
-                              <Typography sx={{ color: "#F8F8F8" }}>
-                                {`${track.name} ${track.artist}`}
-                              </Typography>
-                            </Stack>
+                            <Typography sx={{ color: "#F8F8F8" }}>
+                              {`${track.name} ${track.artist}`}
+                            </Typography>
                           </>
                         ))}
                       </AccordionDetails>
@@ -195,7 +193,7 @@ export default function ViewAlbums({ selectAlbum }) {
           <Link to="/transfer">
             <Button
               variant={"contained"}
-              sx={{ backgroundColor: "#1f3c7e", marginTop: "5px" }}
+              sx={{ backgroundColor: "#F8F8F8", marginTop: "5px" }}
             >
               Next
             </Button>

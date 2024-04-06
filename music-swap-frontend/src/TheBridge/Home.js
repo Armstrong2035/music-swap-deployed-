@@ -20,10 +20,6 @@ import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
 import StepperComponent from "../StepperComponent";
 
 export default function Home() {
-  const isSpotifyActive = true;
-  const isYouTubeActive = false;
-  const isAppleMusicActive = false;
-  const activeStep = 0;
   return (
     <div style={{ backgroundColor: "#011A51" }}>
       <AppBar

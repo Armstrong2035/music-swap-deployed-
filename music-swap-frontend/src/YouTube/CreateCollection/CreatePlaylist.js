@@ -11,6 +11,8 @@ import {
   Button,
   CardMedia,
   Grid,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
@@ -87,49 +89,57 @@ const CreatePlaylist = () => {
   };
 
   return (
-    <Container>
-      {queries.map((query, index) => (
-        <Card key={index}>
-          <Grid
-            container
-            direction={"column"}
-            justifyItems={"center"}
-            spacing={5}
-          >
-            <Grid item xs={12} sm={12} md={4} lg={6}>
-              <CardContent>
-                <Grid container spacing={5}>
-                  <Grid item>
-                    <CardMedia>
-                      <img src={query.image} />
-                    </CardMedia>
-                  </Grid>
-                  <Grid item>
-                    <Typography>{`${query.title}`}</Typography>
-                  </Grid>
-                  <Grid item>
-                    <CheckCircleTwoToneIcon
-                      sx={{ color: query.status ? "green" : "inherit" }}
-                    />
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Grid>
-          </Grid>
-        </Card>
-      ))}
-
-      <Button
-        sx={{
-          backgroundColor: "#011A51",
-          color: "white",
-          maxwidth: 300,
-        }}
-        onClick={createPlaylist}
+    <div
+      style={{
+        backgroundColor: "#011A51",
+        height: "100vh",
+        overflow: "auto",
+      }}
+    >
+      <AppBar
+        position="static"
+        sx={{ padding: "20px", backgroundColor: "#0d2a67" }}
       >
-        Clone your playlists
-      </Button>
-    </Container>
+        <Toolbar></Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          padding: "5px 50px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {queries.map((query, index) => (
+          <Box sx={{ marginTop: "15px", backgroundColor: "#1f3c7e" }}>
+            <Stack
+              container
+              alignItems={"center"}
+              justifyContent={"flex-start"}
+              direction={"row"}
+              spacing={4}
+            >
+              <img src={query.image} />
+
+              <Typography
+                sx={{ color: "#F8F8F8" }}
+              >{`${query.title}`}</Typography>
+            </Stack>
+          </Box>
+        ))}
+
+        <Button
+          sx={{
+            backgroundColor: "#F8F8F8",
+            marginTop: "5px",
+          }}
+          onClick={createPlaylist}
+        >
+          Complete
+        </Button>
+      </Box>
+    </div>
   );
 };
 
