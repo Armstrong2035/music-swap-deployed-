@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../Store/Store";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography, Stack } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Stack,
+  Box,
+} from "@mui/material";
 import youtubeicon from "../../mediaa/youtubeicon.png";
 
 const GoogleAuth = ({ isYouTubeActive }) => {
@@ -10,6 +17,9 @@ const GoogleAuth = ({ isYouTubeActive }) => {
     (state) => state
   );
   const [color, setColor] = useState(isYouTubeActive ? "#011A51" : "grey");
+  const [onClick, setOnClick] = useState(
+    isYouTubeActive ? handleAuthClick : null
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,39 +78,39 @@ const GoogleAuth = ({ isYouTubeActive }) => {
   // console.log(accessToken);
 
   return (
-    <Card
+    <Box
       variant="outlined"
       sx={{
         backgroundColor: color,
         color: "black",
-        maxwidth: 300,
+        width: "300px",
+        height: "100px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
-      raised={true}
-      onClick={handleAuthClick}
+      onClick={onClick}
     >
-      <CardContent>
-        <Stack
-          direction={"row"}
-          spacing={2}
-          alignItems={"center"}
-          justifyContent={"center"}
+      <Stack
+        direction={"row"}
+        spacing={2}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <img src={youtubeicon} />
+
+        <Typography
+          variant="h4"
+          component="p"
+          gutterBottom
+          sx={{
+            color: "white",
+          }}
         >
-          <CardMedia>
-            <img src={youtubeicon} />
-          </CardMedia>
-          <Typography
-            variant="h4"
-            component="p"
-            gutterBottom
-            sx={{
-              color: "white",
-            }}
-          >
-            YouTube
-          </Typography>
-        </Stack>
-      </CardContent>
-    </Card>
+          YouTube
+        </Typography>
+      </Stack>
+    </Box>
   );
 };
 

@@ -15,6 +15,7 @@ import {
   Card,
   Stack,
   CardContent,
+  Box,
 } from "@mui/material";
 import spotifyicon from "../../mediaa/spotifyicon.png";
 
@@ -60,26 +61,28 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   };
 
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        backgroundColor: color,
-        color: "black",
-        maxwidth: 300,
-      }}
-      raised={true}
-      onClick={handleLoginClick}
-    >
-      <CardContent>
+    <Button>
+      <Box
+        variant="outlined"
+        sx={{
+          backgroundColor: "#003566",
+          color: "black",
+          width: "300px",
+          height: "100px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onClick={handleLoginClick}
+      >
         <Stack
           direction={"row"}
           spacing={2}
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <CardMedia>
-            <img src={spotifyicon} />
-          </CardMedia>
+          <img src={spotifyicon} />
+
           <Typography
             variant="h4"
             component="p"
@@ -91,7 +94,7 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
             Spotify
           </Typography>
         </Stack>
-      </CardContent>
-    </Card>
+      </Box>
+    </Button>
   );
 }

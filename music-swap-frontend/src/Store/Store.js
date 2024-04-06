@@ -4,11 +4,16 @@ export const useStore = create((set) => ({
   albums: [],
   accessToken: "",
   albumsToClone: [],
+  albumsToShare: [],
+  playlists: [],
+  playlistsToClone: [],
+  playlistsToShare: [],
   youTubeAccessToken: "",
   queries: [],
   uploadData: [],
   color: "",
   setAlbums: (albums) => set({ albums }),
+  setPlaylists: (playlists) => set({ playlists }),
   setAccessToken: (accessToken) => set({ accessToken }),
   setYouTubeAccessToken: (youTubeAccessToken) => set({ youTubeAccessToken }),
   setQueries: (queries) => set({ queries }),
@@ -23,6 +28,23 @@ export const useStore = create((set) => ({
     set((state) => ({
       albumsToClone: state.albumsToClone.filter((item) => item !== album),
     }));
+  },
+
+  addToPlaylistsToClone: (album) => {
+    set((state) => {
+      return { albumsToClone: [...state.albumsToClone, album] };
+    });
+  },
+  removeFromPlaylistsToClone: (album) => {
+    set((state) => ({
+      albumsToClone: state.albumsToClone.filter((item) => item !== album),
+    }));
+  },
+
+  addToAlbumsToShare: (album) => {
+    set((state) => {
+      return { albumsToShare: [...state.albumsToShare, album] };
+    });
   },
 }));
 

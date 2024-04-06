@@ -16,6 +16,7 @@ import ExtractAlbums from "./Spotify/ExtractCollection/ExtractAlbums";
 import ReceiveQuery from "./YouTube/ReceiveQuery/ReceiveQuery";
 import GoogleAuth from "./YouTube/Authentication/GoogleAuth";
 import TransferTo from "./TheBridge/TransferTo";
+import { Stepper, Step, StepLabel } from "@mui/material";
 
 function App() {
   return (
