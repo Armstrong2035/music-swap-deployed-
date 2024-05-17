@@ -36,7 +36,7 @@ const GoogleAuth = ({ isYouTubeActive }) => {
         client_id:
           "639409206129-0jtt27lo6t93agp5k9qnm48t1cqrtg1e.apps.googleusercontent.com",
 
-        redirect_uri: "http://localhost3000/youtube/login",
+        redirect_uri: "https://music-swap.vercel.app/youtube/login",
 
         //"https://musicswap-gamma.vercel.app/youtube/login"
 
