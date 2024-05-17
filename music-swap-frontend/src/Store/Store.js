@@ -12,13 +12,21 @@ export const useStore = create((set) => ({
   queries: [],
   uploadData: [],
   color: "",
+  steps: [
+    "Transfer From",
+    "Select Collection",
+    "Transfer To",
+    "Complete transfer",
+  ],
   setAlbums: (albums) => set({ albums }),
   setPlaylists: (playlists) => set({ playlists }),
   setAccessToken: (accessToken) => set({ accessToken }),
   setYouTubeAccessToken: (youTubeAccessToken) => set({ youTubeAccessToken }),
+
   setQueries: (queries) => set({ queries }),
   setUploadData: (newUploadobject) =>
     set((state) => ({ uploadData: [...state.uploadData, newUploadobject] })),
+
   addToAlbumsToClone: (album) => {
     set((state) => {
       return { albumsToClone: [...state.albumsToClone, album] };

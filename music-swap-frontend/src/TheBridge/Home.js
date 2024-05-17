@@ -13,13 +13,17 @@ import {
   Box,
   AppBar,
   Toolbar,
+  Step,
+  Stepper,
+  StepLabel,
 } from "@mui/material";
 import SpotifyAuthentication from "../Spotify/Authentication/SpotifyAuthentication";
 import AppleMusicAuthentication from "../AppleMusic/AppleMusicAuthentication";
 import GoogleAuth from "../YouTube/Authentication/GoogleAuth";
-import StepperComponent from "../StepperComponent";
+import { useStore } from "../Store/Store";
 
 export default function Home() {
+  const { steps } = useStore((state) => state);
   return (
     <div style={{ backgroundColor: "#011A51" }}>
       <AppBar
@@ -28,6 +32,14 @@ export default function Home() {
       >
         <Toolbar></Toolbar>
       </AppBar>
+
+      <Stepper activeStep={0} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
 
       <Box
         sx={{
@@ -50,10 +62,10 @@ export default function Home() {
           sx={{ padding: 5 }}
         >
           <Grid item>
-            <SpotifyAuthentication isSpotifyActive={isSpotifyActive} />
+            <SpotifyAuthentication />
           </Grid>
           <Grid item>
-            <GoogleAuth isYouTubeActive={isYouTubeActive} />
+            <GoogleAuth />
           </Grid>
           <Grid item>
             <AppleMusicAuthentication />

@@ -21,10 +21,14 @@ import {
   AccordionSummary,
   AppBar,
   Toolbar,
+  Fab,
+  Step,
+  Stepper,
+  StepLabel,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function ViewAlbums({ selectAlbum }) {
+export default function ViewAlbums() {
   const {
     albums,
     playlists,
@@ -34,6 +38,7 @@ export default function ViewAlbums({ selectAlbum }) {
     addToAlbumsToClone,
     removeFromAlbumsToClone,
     albumsToClone,
+    steps,
   } = useStore((state) => state);
 
   const [currentTab, setCurrentTab] = useState(0);
@@ -42,7 +47,7 @@ export default function ViewAlbums({ selectAlbum }) {
     setCurrentTab(newValue);
   };
 
-  console.log(albums);
+  // console.log(albums);
 
   const handleCheckboxClickAlbums = (album) => {
     if (albumsToClone.includes(album)) {
@@ -62,9 +67,9 @@ export default function ViewAlbums({ selectAlbum }) {
     }
   };
 
-  console.log(albums);
+  // console.log(albums);
 
-  console.log(albumsToClone);
+  // console.log(playlists);
 
   return (
     <>
@@ -81,6 +86,14 @@ export default function ViewAlbums({ selectAlbum }) {
         >
           <Toolbar></Toolbar>
         </AppBar>
+
+        <Stepper activeStep={1} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
 
         <Box
           sx={{
@@ -193,7 +206,11 @@ export default function ViewAlbums({ selectAlbum }) {
           <Link to="/transfer">
             <Button
               variant={"contained"}
-              sx={{ backgroundColor: "#F8F8F8", marginTop: "5px" }}
+              sx={{
+                backgroundColor: "#F8F8F8",
+                marginTop: "5px",
+                color: "black",
+              }}
             >
               Next
             </Button>

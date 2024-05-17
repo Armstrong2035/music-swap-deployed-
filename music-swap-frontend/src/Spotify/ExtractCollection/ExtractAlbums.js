@@ -53,7 +53,7 @@ export default function ExtractAlbums() {
               );
               const playlistData = await playlistResponse.json();
 
-              console.log(playlistData);
+              // console.log(playlistData);
 
               return {
                 id: playlistData.id,
@@ -79,10 +79,10 @@ export default function ExtractAlbums() {
     }
   }, [accessToken]);
 
-  useEffect(() => {
-    console.log(albums);
-    console.log(playlists);
-  });
+  // useEffect(() => {
+  //   console.log(albums);
+  //   console.log(playlists);
+  // });
 
   return (
     <>

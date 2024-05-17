@@ -13,19 +13,26 @@ import {
   Grid,
   AppBar,
   Toolbar,
+  Alert,
+  Stepper,
+  Step,
+  StepLabel,
 } from "@mui/material";
-
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import { green } from "@mui/material/colors";
 
 const CreatePlaylist = () => {
-  const { youTubeAccessToken: accessToken, queries } = useStore(
-    (state) => state
-  );
+  const {
+    youTubeAccessToken: accessToken,
+    queries,
+    steps,
+  } = useStore((state) => state);
 
-  const [checkMarkButton, setCheckMarkButton] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
+  console.log(queries);
   const createPlaylist = async () => {
+    setShowAlert(true);
     for (const album of queries) {
       try {
         album.status = false;
@@ -102,6 +109,22 @@ const CreatePlaylist = () => {
       >
         <Toolbar></Toolbar>
       </AppBar>
+
+      <Stepper activeStep={3} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+
+      {showAlert && (
+        <Alert severity="info" onClose={() => setShowAlert(false)}>
+          Your playlists and albums are being created as private YouTube
+          playlists. This process typically takes 1-5 minutes. Please check your
+          created playlists.
+        </Alert>
+      )}
 
       <Box
         sx={{
