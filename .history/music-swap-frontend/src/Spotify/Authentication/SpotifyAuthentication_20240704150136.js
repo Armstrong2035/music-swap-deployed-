@@ -24,8 +24,6 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   const [color, setColor] = useState(isSpotifyActive ? "#011A51" : "#E0E0E0");
   const [token, setToken] = useState("");
   const [displayName, setDisplayName] = useState("");
-
-  console.log("SpotifyAuthentication component rendering");
   const navigate = useNavigate();
 
   const { setAccessToken } = useStore((state) => state);
@@ -33,24 +31,21 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   const spotifyLoginUrl = useMemo(() => spotifyLogin(), []);
 
   useEffect(() => {
-    console.log("useEffect in SpotifyAuthentication running");
-    console.log("Authentication effect running");
     const hash = window.location.hash;
     let storedToken = window.localStorage.getItem("token");
 
     if (hash) {
-      console.log("Hash found:", hash);
       const urlToken = getTokenFromUrl();
       if (urlToken.access_token) {
-        console.log("Access token found in URL");
-        // ... (rest of the code)
-        console.log("Attempting to navigate to /spotify/extractalbums");
+        window.location.hash = "";
+        window.localStorage.setItem("token", urlToken.access_token);
+        spotify.setAccessToken(urlToken.access_token);
+        setAccessToken(urlToken.access_token);
         navigate("/spotify/extractalbums");
       }
     } else if (storedToken) {
-      console.log("Stored token found");
-      // ... (rest of the code)
-      console.log("Attempting to navigate to /spotify/extractalbums");
+      setToken(storedToken);
+      spotify.setAccessToken(storedToken);
       navigate("/spotify/extractalbums");
     }
   }, [navigate, setAccessToken]);

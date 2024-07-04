@@ -33,7 +33,6 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   const spotifyLoginUrl = useMemo(() => spotifyLogin(), []);
 
   useEffect(() => {
-    console.log("useEffect in SpotifyAuthentication running");
     console.log("Authentication effect running");
     const hash = window.location.hash;
     let storedToken = window.localStorage.getItem("token");

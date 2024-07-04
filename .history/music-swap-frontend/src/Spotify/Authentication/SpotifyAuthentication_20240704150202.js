@@ -24,8 +24,6 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   const [color, setColor] = useState(isSpotifyActive ? "#011A51" : "#E0E0E0");
   const [token, setToken] = useState("");
   const [displayName, setDisplayName] = useState("");
-
-  console.log("SpotifyAuthentication component rendering");
   const navigate = useNavigate();
 
   const { setAccessToken } = useStore((state) => state);
@@ -33,7 +31,6 @@ export default function SpotifyAuthentication({ isSpotifyActive }) {
   const spotifyLoginUrl = useMemo(() => spotifyLogin(), []);
 
   useEffect(() => {
-    console.log("useEffect in SpotifyAuthentication running");
     console.log("Authentication effect running");
     const hash = window.location.hash;
     let storedToken = window.localStorage.getItem("token");

@@ -10,7 +10,9 @@ function Spotify({ setAlbums, filteredAlbums, selectAlbum }) {
 
   return (
     <div>
+      <SpotifyAuthentication />
       <ExtractAlbums />
+      <ViewAlbums />
     </div>
   );
 }
